@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block style%}
+display: flex;
+justify-content: center;
+gap: 3rem;
+div.create-btn {
+flex-basis: 100%;
+}
+
+{% endblock %}
+
+{% block content %}
+{% for book in context_books %}
+<div class="create-btn">
+    <a href="{% url 'books_create' %}" class="btn btn-primary">Create book</a>
+</div>
+<br/>
+<a href="{% url 'books_update' book.id %}">
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="http://placeimg.com/640/360/any" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">{{book}}</h5>
+            <p class="card-text">{{book.description |slice:20}}</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+    </div>
+</a>
+
+{% endfor %}
+{% endblock %}
